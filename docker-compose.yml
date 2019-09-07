@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+    blockchain_nginx:
+        build: services/nginx
+        container_name: blockchain-explorer-nginx
+        restart: always
+        working_dir: /www
+        volumes:
+            - ./:/www
+        ports:
+          - "8000:80"
+        networks:
+          - overlay
+    phpfpm:
+        build: services/phpfpm
+        container_name: blockchain-explorer-phpfpm
+        hostname: phpfpm
+        restart: always
+        # working_dir: /www
+        volumes:
+            - ./:/www
+        # command: bash /www/services/phpfpm/phpfpm.sh
+        networks:
+          - overlay
+networks:
+    overlay:

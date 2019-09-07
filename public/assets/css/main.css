@@ -1,0 +1,71 @@
+/*
+Copyright 2019 The Inescoin developers.
+- Mounir R'Quiba
+Licensed under the GNU Affero General Public License, version 3.
+*/
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.border_table th {
+    border: 1px solid lightgray;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.border_table tr:nth-child(even) {
+    background: #FFF3F9;
+}
+
+.border_table td {
+    border: 1px solid lightgray;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: baseline;
+    /* vertical-align: bottom; */
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.pagination {
+    text-align: center;
+    margin: 17px 0;
+}
+
+a.btn {
+    text-decoration: none;
+    padding: 10px 5px;
+    border: solid 1px #C1C1C1;
+    border-radius: 3px;
+    padding: 5px 10px;
+    min-width: 80px;
+}
+
+a.btn:hover {
+    background: #F1F1F1;
+    color: #000000;
+}
+
+.btn.btn-previous, .btn.btn-next {
+    background: #9900CC;
+    color: #FFFFFF;
+}
+
+.truncate {
+    visibility: hidden;
+}
