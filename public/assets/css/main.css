@@ -69,3 +69,7 @@ a.btn:hover {
 .truncate {
     visibility: hidden;
 }
+
+.txt-200 {
+    width: 200px;
+}

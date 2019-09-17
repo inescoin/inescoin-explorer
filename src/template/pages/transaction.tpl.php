@@ -3,7 +3,7 @@
     <i class="fa fa-exchange" aria-hidden="true"></i> Transaction Information
   </div>
   <div class="card-body">
-    <table class="table table-striped">
+    <table class="table table-responsive table-striped w-100">
         <tbody>
             <tr>
                 <td>Date</td>
@@ -64,7 +64,7 @@
     <i class="fa fa-thumb-tack" aria-hidden="true"></i> Transfers <span class="badge badge-info pull-right"><?php echo count($transaction['transfers']) ?> transfers</span>
   </div>
   <div class="card-body">
-    <table class="table table-striped">
+    <table class="table table-responsive table-striped w-100">
         <tbody>
             <tr>
                 <th>To</th>

@@ -19,7 +19,7 @@ var truncate = function (fullStr, strLen, separator) {
 function truncateAll() {
 	var elementsToTruncate = document.querySelectorAll(".truncate");
 	for (var i = 0; i < elementsToTruncate.length; i++) {
-		elementsToTruncate[i].innerHTML = truncate(elementsToTruncate[i].innerHTML, 12);
+		elementsToTruncate[i].innerHTML = truncate(elementsToTruncate[i].innerHTML, 20);
 		elementsToTruncate[i].style.visibility = 'visible';
 	}
 }

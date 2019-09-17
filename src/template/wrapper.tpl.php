@@ -21,6 +21,10 @@
       font-family: "Merriweather Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
       font-weight: 700;
     }
+    td { word-wrap: break-word; }
+    .txt-300 { width: 300px; }
+
+    @media screen and (max-width: 967px) { .txt-300 { width: 200px; } }
   </style>
 <?php
 	include 'header.tpl.php';

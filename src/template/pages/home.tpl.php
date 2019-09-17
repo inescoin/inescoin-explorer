@@ -100,7 +100,7 @@
   </div>
   <div class="card-body">
     <?php if ($transactionsPool['count']): ?>
-    <table class="table table-striped">
+    <table class="table table-responsive table-striped w-100">
         <tbody>
             <tr>
                 <th class="text-center">Date</th>
@@ -146,7 +146,7 @@
           <a class="page-link" href="/?page=<?php echo $pagination['next'] ?>">Next</a>
         </li>
     </ul>
-    <table class="table table-striped">
+    <table class="table table-responsive table-striped w-100">
         <tbody>
             <tr>
                 <th class="text-center">Height</th>
@@ -165,7 +165,7 @@
                 </td>
                 <td class="text-center">
                     <a href="?block-hash=<?php echo $block['hash']; ?>">
-                        <div class="truncate"><?php echo $block['hash'] ?></div>
+                        <div class="txt-300 text-wrap"><?php echo $block['hash'] ?></div>
                     </a>
                 </td>
                 <td class="text-center">

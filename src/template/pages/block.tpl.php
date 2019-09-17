@@ -3,7 +3,7 @@
     Block Information
   </div>
   <div class="card-body">
-    <table class="table table-striped">
+    <table class="table table-responsive table-striped w-100">
         <tbody>
             <tr>
                 <td>Height</td>
@@ -55,7 +55,7 @@
     Transactions <span class="badge badge-info"><?php echo count($block['data']) ?></span>
   </div>
   <div class="card-body">
-    <table class="table table-striped">
+    <table class="table table-responsive table-striped w-100">
         <tbody>
           <tr>
             <th>Height</th>
