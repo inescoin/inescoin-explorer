@@ -79,7 +79,7 @@
                         <?php echo $transfer['to']; ?>
                     </a>
                 </td>
-                <td class="align-center"><?php echo ($transaction['amount'] / 1000000000); ?></td>
+                <td class="align-center"><?php echo ($transfer['amount'] / 1000000000); ?></td>
                 <td class="align-center" title="<?php echo $transfer['hash']; ?>">
                     <a href="?transfer=<?php echo $transfer['hash']; ?>">
                         <div class="truncate"><?php echo $transfer['hash']; ?></div>
