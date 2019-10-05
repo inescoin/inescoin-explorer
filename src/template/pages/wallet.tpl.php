@@ -42,7 +42,7 @@
                 </td>
                 <td class="text-center"><span class="badge badge-<?php echo $wallet['address'] === $transaction['from'] ? 'danger' : 'success' ?>"><?php echo $wallet['address'] === $transaction['from'] ? 'output' : 'input' ?></span></td>
                 <td class="text-center"><?php echo $wallet['address'] === $transaction['from'] ? '-' : '+' ?><?php echo ($transaction['amount'] / 1000000000); ?></td>
-                <td class="text-center"><?php echo ($transaction['fee'] / 1000000000); ?></td>
+                <td class="text-center"><?php if (isset($transaction['fee'])) { echo ($transaction['fee'] / 1000000000); } ?></td>
                 <td class="text-center">
                     <div class="truncate"><?php echo $transaction['hash']; ?></div>
                 </td>
