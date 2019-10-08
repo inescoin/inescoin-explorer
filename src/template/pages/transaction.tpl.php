@@ -70,6 +70,7 @@
                 <th>To</th>
                 <th>Amount</th>
                 <th>Hash</th>
+                <th>Wallet ID</th>
                 <th>Nonce</th>
             </tr>
             <?php foreach ($transaction['transfers'] as $transfer): ?>
@@ -85,6 +86,7 @@
                         <div class="truncate"><?php echo $transfer['hash']; ?></div>
                     </a>
                 </td>
+                <td class="align-center"><?php echo $transfer['walletId']; ?></td>
                 <td class="align-center" title="<?php echo $transfer['nonce']; ?>"><div class="truncate"><?php echo $transfer['nonce']; ?></div></td>
             </tr>
             <?php endforeach; ?>

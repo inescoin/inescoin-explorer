@@ -28,7 +28,7 @@ class App
 	public $cacheFolder = '../cache/';
 	public $cacheClearTimer = 180;
 
-	public function __construct($nodeUrl = 'https://node.inescoin.org/')
+	public function __construct($nodeUrl = 'https://node.inescoin.org/') // http://inescoin-node:8087/
 	{
 		$this->_initComponents();
 
