@@ -87,6 +87,7 @@ class App
 				$this->body['search'] = '';
 				$this->body['status'] = $this->getStatus();
 				$this->body['blocks'] = $this->getLastBlocks($page);
+				$this->body['domains'] = $this->getLastDomains();
 				$this->body['transactionsPool'] = $this->getTransactionPool();
 				$this->body['pagination'] = [
 					'current' => $page,
@@ -239,6 +240,11 @@ class App
 			'page' => $page,
 			'limit' => 100
 		]);
+	}
+
+	public function getLastDomains() {
+		// var_dump('getLastBlocks');
+		return $this->_client('POST', 'get-last-domains');
 	}
 
 	public function getTransactionPool() {

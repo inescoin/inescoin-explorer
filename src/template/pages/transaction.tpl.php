@@ -59,6 +59,51 @@
     </table>
   </div>
 </div>
+
+<div class="card mt-4">
+  <div class="card-header">
+    <i class="fa fa-thumb-tack" aria-hidden="true"></i> To Do's <span class="badge badge-info pull-right"><?php echo count($transaction['toDo']) ?> toDo's</span>
+  </div>
+  <div class="card-body">
+    <?php
+        $i = 1;
+        if (isset($transaction['toDo'])) {
+    ?>
+    <?php foreach ($transaction['toDo'] as $toDo): ?>
+        <h2 class="badge badge-info">To Do: <?php echo $i; ?></h2>
+        <p>
+            <b>Hash:</b>
+            <?php echo $toDo['hash']; ?>
+        </p>
+        <p>
+            <b>Action:</b>
+            <?php echo $toDo['action']; ?>
+        </p>
+        <p>
+            <b>Name:</b>
+            <?php echo $toDo['name']; ?>
+        </p>
+        <?php if ($toDo['action'] === 'update') { ?>
+        <p>
+            <b>Command:</b>
+            <?php echo base64_encode(json_encode($toDo['data'])); ?>
+        </p>
+        <?php } ?>
+        <p>
+            <b>Signature:</b>
+            <?php echo $toDo['signature']; ?>
+        </p>
+        <hr />
+    <?php
+        $i++;
+    ?>
+    <?php endforeach; ?>
+    <?php
+        }
+    ?>
+  </div>
+</div>
+
 <div class="card mt-4">
   <div class="card-header">
     <i class="fa fa-thumb-tack" aria-hidden="true"></i> Transfers <span class="badge badge-info pull-right"><?php echo count($transaction['transfers']) ?> transfers</span>

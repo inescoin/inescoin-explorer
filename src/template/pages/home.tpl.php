@@ -192,6 +192,44 @@
     </ul>
   </div>
 </div>
+
+<div class="card mt-4">
+  <div class="card-header">
+    <i class="fa fa-globe" aria-hidden="true"></i> Recent domains
+  </div>
+  <div class="card-body">
+    <table class="table table-responsive table-striped w-100">
+        <tbody>
+            <tr>
+                <th class="text-center">Height</th>
+                <th class="text-center">Hash</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Transaction hash</th>
+            </tr>
+            <?php foreach ($domains['domainList'] as $domain): ?>
+            <tr>
+                <td class="text-center">
+                    <a href="?block-height=<?php echo $domain['blockHeight']; ?>">
+                        <?php echo $domain['blockHeight'] ?>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <div class="txt-300 text-wrap"><?php echo $domain['hash'] ?></div>
+                </td>
+                <td class="text-center">
+                    <?php echo $domain['url']; ?>
+                </td>
+                <td class="text-center">
+                    <a href="?transaction=<?php echo $domain['transactionHash']; ?>">
+                      <?php echo $domain['transactionHash']; ?>
+                    </a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+  </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
 <script type="text/javascript">
