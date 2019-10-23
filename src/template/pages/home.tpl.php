@@ -193,6 +193,7 @@
   </div>
 </div>
 
+<?php if (!empty($domains)): ?>
 <div class="card mt-4">
   <div class="card-header">
     <i class="fa fa-globe" aria-hidden="true"></i> Recent domains
@@ -230,6 +231,7 @@
     </table>
   </div>
 </div>
+<?php endif; ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
 <script type="text/javascript">
