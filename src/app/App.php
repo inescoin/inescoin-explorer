@@ -137,6 +137,14 @@ class App
 					'next' => $page + 1,
 				];
 				break;
+
+			case 'domain':
+				$url = $this->getParameterValue('domain');
+				$this->body['search'] = '';
+				$this->body['domain'] = $this->getDomainByUrl($url);
+				$this->body['website'] = $this->getDomainWebsiteByUrl($url);
+
+				break;
 		}
 	}
 
@@ -167,6 +175,7 @@ class App
 
 	protected function getWhiteList() {
 		return [
+			'domain',
 			'wallet',
 			'search',
 			'block-hash',
@@ -217,6 +226,12 @@ class App
 		$transfer = $this->getTransferByHash($query);
 		if (!empty($transfer['transfer'])) {
 			header('Location: /?transfer=' . $transfer['transfer']['hash']);
+			exit();
+		}
+
+		$domain = $this->getDomainWebsiteByUrl($query);
+		if (!isset($domain['error'])) {
+			header('Location: /?domain=' . $query);
 			exit();
 		}
 
@@ -290,6 +305,20 @@ class App
 		return $this->_client('POST', 'get-wallet-address-infos', [
 			'page' => $page,
 			'walletAddress' => $walletAddress
+		]);
+	}
+
+	public function getDomainByUrl($url = '')
+	{
+		return $this->_client('POST', 'get-website-info', [
+			'url' => $url
+		]);
+	}
+
+	public function getDomainWebsiteByUrl($url = '')
+	{
+		return $this->_client('POST', 'get-domain-url', [
+			'url' => $url
 		]);
 	}
 

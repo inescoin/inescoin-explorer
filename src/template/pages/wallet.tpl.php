@@ -1,3 +1,4 @@
+<?php if (isset($wallet['address'])) { ?>
 <div class="card mt-4">
     <div class="card-header">
         <i class="fa fa-suitcase" aria-hidden="true"></i> Wallet Information
@@ -123,13 +124,18 @@
         <table class="table table-responsive table-striped w-100">
             <tbody>
                 <tr>
+                    <th class="text-center">Name</th>
                     <th class="text-center">Block Height</th>
                     <th class="text-center">Hash</th>
-                    <th class="text-center">Name</th>
                     <th class="text-center">Transaction hash</th>
                 </tr>
                 <?php foreach ($wallet['domains']['domainList'] as $domain): ?>
                 <tr>
+                    <td class="text-center">
+                        <a href="?domain=<?php echo $domain['url'] ?>">
+                            <?php echo $domain['url'] ?>
+                        </a>
+                    </td>
                     <td class="text-center">
                         <a href="?block-height=<?php echo $domain['blockHeight'] ?>">
                             <?php echo $domain['blockHeight'] ?>
@@ -138,9 +144,7 @@
                     <td class="text-center">
                         <div class="txt-300 text-wrap"><?php echo $domain['hash'] ?></div>
                     </td>
-                    <td class="text-center">
-                        <div><?php echo $domain['url'] ?></div>
-                    </td>
+
                     <td class="text-center">
                         <a href="?transaction=<?php echo $domain['transactionHash'] ?>">
                             <div class="txt-300 text-wrap"><?php echo $domain['transactionHash'] ?></div>
@@ -157,4 +161,8 @@
     </div>
   </div>
 </div>
-
+<?php } else { ?>
+<div class="alert alert-danger text-center mt-4">
+    <i class="fa fa-exclamation-triangle"></i> Wallet not found.
+</div>
+<?php } ?>

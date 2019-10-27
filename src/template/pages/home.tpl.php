@@ -218,7 +218,9 @@
                     <div class="txt-300 text-wrap"><?php echo $domain['hash'] ?></div>
                 </td>
                 <td class="text-center">
+                  <a href="?domain=<?php echo $domain['url']; ?>">
                     <?php echo $domain['url']; ?>
+                  </a>
                 </td>
                 <td class="text-center">
                     <a href="?transaction=<?php echo $domain['transactionHash']; ?>">

@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <td>Signature</td>
-                <td class="fixedfont"><small font-><?php echo $transaction['signature']; ?></small></td>
+                <td class="fixedfont"><small><?php echo $transaction['signature']; ?></small></td>
             </tr>
             <tr>
                 <td>Height</td>
@@ -81,7 +81,7 @@
         </p>
         <p>
             <b>Name:</b>
-            <?php echo $toDo['name']; ?>
+            <a href="?domain=<?php echo $toDo['name']; ?>"><?php echo $toDo['name']; ?></a>
         </p>
         <?php if ($toDo['action'] === 'update') { ?>
         <p>
