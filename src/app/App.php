@@ -7,8 +7,8 @@
 
 namespace Blockchain;
 
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 
 use GuzzleHttp\Client;
 
@@ -83,7 +83,7 @@ class App
 		// var_dump('> controller');
 		switch ($this->currentPage) {
 			case 'home':
-				$page = (int) $this->getParameterValue('page');
+				$page = (int) $this->_getParameterValue('page');
 				$this->body['search'] = '';
 				$this->body['status'] = $this->getStatus();
 				$this->body['blocks'] = $this->getLastBlocks($page);
@@ -97,38 +97,38 @@ class App
 				break;
 
 			case 'block-height':
-				$blockHeight = (int) $this->getParameterValue('block-height');
+				$blockHeight = (int) $this->_getParameterValue('block-height');
 				$this->body['search'] = '';
 				$this->body['block'] = $this->getBlockByHeight($blockHeight);
 				break;
 
 			case 'block-hash':
-				$blockHash = $this->getParameterValue('block-hash');
+				$blockHash = $this->_getParameterValue('block-hash');
 				$this->body['search'] = '';
 				$this->body['block'] = $this->getBlockByHash($blockHash);
 				break;
 
 			case 'search':
-				$query = $this->getParameterValue('search');
+				$query = $this->_getParameterValue('search');
 				$this->body['search'] = $query;
 				$this->body['results'] = $this->getSearchInAll($query);
 				break;
 
 			case 'transaction':
 				$this->body['search'] = '';
-				$transactionHash = $this->getParameterValue('transaction');
+				$transactionHash = $this->_getParameterValue('transaction');
 				$this->body['transaction'] = $this->getTransactionByHash($transactionHash);
 				break;
 
 			case 'transfer':
-				$transferHash = $this->getParameterValue('transfer');
+				$transferHash = $this->_getParameterValue('transfer');
 				$this->body['search'] = '';
 				$this->body['transfer'] = $this->getTransferByHash($transferHash);
 				break;
 
 			case 'wallet':
-				$page = (int) $this->getParameterValue('page');
-				$walletAddress = $this->getParameterValue('wallet');
+				$page = (int) $this->_getParameterValue('page');
+				$walletAddress = $this->_getParameterValue('wallet');
 				$this->body['search'] = '';
 				$this->body['wallet'] = $this->getWalletAddressInfos($walletAddress, $page);
 				$this->body['pagination'] = [
@@ -139,7 +139,7 @@ class App
 				break;
 
 			case 'domain':
-				$url = $this->getParameterValue('domain');
+				$url = $this->_getParameterValue('domain');
 				$this->body['search'] = '';
 				$this->body['domain'] = $this->getDomainByUrl($url);
 				$this->body['website'] = $this->getDomainWebsiteByUrl($url);
@@ -163,7 +163,7 @@ class App
 
 		extract($this->body);
 
-		if ($this->getParameterValue('api')) {
+		if ($this->_getParameterValue('api')) {
 			header('Content-Type: application/json');
 			echo json_encode($this->body, JSON_PRETTY_PRINT);
 
@@ -334,7 +334,7 @@ class App
 		$response = [];
 
 		$hash = md5($method . $uri . serialize($params));
-		if (!!($cache = $this->getCache($hash))) {
+		if (!!($cache = $this->_getCache($hash))) {
 			return $cache;
 		}
 
@@ -344,14 +344,14 @@ class App
 					$params
 			])->getBody()->getContents(), true);
 
-			$this->setCache($hash, $response);
+			$this->_setCache($hash, $response);
 		} catch (\Exception $e) {
 		}
 
 		return $response;
 	}
 
-	private function getParameterValue($parameter) {
+	private function _getParameterValue($parameter) {
 		$whiteList = $this->getWhiteList();
 
 		$value = null;
@@ -370,9 +370,9 @@ class App
 		return $value;
 	}
 
-	private function getCache($md5) {
-		$this->checkCacheForlder();
-		$this->clearTimeoutedCache();
+	private function _getCache($md5) {
+		$this->_checkCacheForlder();
+		$this->_clearTimeoutedCache();
 
 		$filename = $this->cacheFolder . $md5 . '.json';
 
@@ -388,20 +388,20 @@ class App
 		return unserialize(file_get_contents($filename));
 	}
 
-	private function setCache($md5, $serialized) {
-		$this->checkCacheForlder();
+	private function _setCache($md5, $serialized) {
+		$this->_checkCacheForlder();
 
 		$filename = $this->cacheFolder . $md5 . '.json';
 		file_put_contents($filename, serialize($serialized));
 	}
 
-	private function checkCacheForlder() {
+	private function _checkCacheForlder() {
 		if (!is_dir($this->cacheFolder)) {
 			@mkdir($this->cacheFolder, 0777, true);
 		}
 	}
 
-	private function clearTimeoutedCache() {
+	private function _clearTimeoutedCache() {
 
 		$filetime = 'time.lock';
 		$folderTimeFile = $this->cacheFolder . $filetime;
