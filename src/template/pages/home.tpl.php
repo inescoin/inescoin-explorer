@@ -36,7 +36,7 @@
                         <i class="fa fa-history mr-2"></i>
                         Est. solve time
                     </span>
-                    <span id="avg-hash-rate" class="value d-inline-block float-right text-info">10 s</span>
+                    <span id="avg-hash-rate" class="value d-inline-block float-right text-info">3 s (no transation 3600s)</span>
                 </li>
                 <li class="list-group-item" data-toggle="tooltip" data-placement="top" data-original-title="Difficulty for the next block, the ratio at which the current hashing speed blocks will be mined, including a 4 minutes interval">
                     <span>
