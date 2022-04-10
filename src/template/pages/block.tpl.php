@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td>Date (Timestamp)</td>
-                <td><?php echo date(DATE_RFC2822, (int)$block['createdAt']); ?> - <?php echo $block['createdAt']; ?></td>
+                <td><?php echo date('Y-m-d H:i:s', (int)$block['createdAt']); ?> - <?php echo $block['createdAt']; ?></td>
             </tr>
             <tr>
                 <td>Nonce</td>
@@ -78,8 +78,8 @@
                 </a>
               </td>
               <td class="align-center">
-                <a href="?wallet=<?php echo $transaction['from']; ?>">
-                  <?php echo $transaction['from']; ?>
+                <a href="?wallet=<?php echo $transaction['fromWalletId']; ?>">
+                  <?php echo $transaction['fromWalletId']; ?>
                 </a>
               </td>
               <td class="align-center"><?php echo !$transaction['coinbase'] ? 'false' : 'true'; ?></td>

@@ -33,15 +33,15 @@
             <tr>
                 <td>Height [start]</td>
                 <td class="fixedfont">
-                    <a href="?block-height=<?php echo $domain['blockHeight']; ?>">
-                        <?php echo $domain['blockHeight']; ?>
+                    <a href="?block-height=<?php echo $domain['height']; ?>">
+                        <?php echo $domain['height']; ?>
                     </a>
                 </td>
             </tr>
             <tr>
                 <td>Height [end]</td>
                 <td class="fixedfont">
-                    <?php echo $domain['blockHeightEnd']; ?>
+                    <?php echo $domain['heightEnd']; ?>
                 </td>
             </tr>
             <tr>
@@ -87,7 +87,7 @@
           <?php foreach ($domain['transactions'] as $transaction): ?>
             <tr>
               <td class="align-center">
-              <?php echo $transaction['blockHeight']; ?>
+              <?php echo $transaction['height']; ?>
               </td>
               <td class="align-center"><?php echo ($transaction['amount'] / 1000000000); ?></td>
               <td class="align-center"><?php echo ($transaction['fee'] / 1000000000); ?></td>
@@ -97,8 +97,8 @@
                 </a>
               </td>
               <td class="align-center">
-                <a href="?wallet=<?php echo $transaction['from']; ?>">
-                  <?php echo $transaction['from']; ?>
+                <a href="?wallet=<?php echo $transaction['fromWalletId']; ?>">
+                  <?php echo $transaction['fromWalletId']; ?>
                 </a>
               </td>
               <td class="align-center"><?php echo $transaction['urlAction']; ?></td>

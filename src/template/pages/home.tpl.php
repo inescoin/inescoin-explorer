@@ -15,17 +15,17 @@
                 </li>
                 <li class="list-group-item" data-toggle="tooltip" data-placement="top" data-original-title="Difficulty for the next block, the ratio at which the current hashing speed blocks will be mined, including a 4 minutes interval">
                     <span>
-                        <i class="fa fa-check-square-o mr-2"></i>
-                        Top Know height
+                        <i class="fa fa-unlock-alt mr-2"></i>
+                        Difficulty
                     </span>
-                    <span id="network-next-difficulty" class="value d-inline-block float-right text-info"><?php echo $status['topKnowHeight'] ?></span>
+                    <span id="network-next-difficulty" class="value d-inline-block float-right text-info"><?php echo $status['cumulativeDifficulty'] ?></span>
                 </li>
                 <li class="list-group-item" data-toggle="tooltip" data-placement="top" data-original-title="Difficulty for the next block, the ratio at which the current hashing speed blocks will be mined, including a 4 minutes interval">
                     <span>
                         <i class="fa fa-bolt mr-2"></i>
                         Syncronized
                     </span>
-                    <span id="network-next-difficulty" class="value d-inline-block float-right text-info"><?php echo $status['isSync'] ? 'Yes' : 'No' ?></span>
+                    <span id="network-next-difficulty" class="value d-inline-block float-right text-info"><?php echo $status['bankValid'] ? 'Yes' : 'No' ?></span>
                 </li>
             </ul>
         </div>
@@ -36,22 +36,21 @@
                         <i class="fa fa-history mr-2"></i>
                         Est. solve time
                     </span>
-                    <span id="avg-hash-rate" class="value d-inline-block float-right text-info">3 s (no transation 3600s)</span>
+                    <span id="avg-hash-rate" class="value d-inline-block float-right text-info">3 s (without tx 3600s)</span>
                 </li>
                 <li class="list-group-item" data-toggle="tooltip" data-placement="top" data-original-title="Difficulty for the next block, the ratio at which the current hashing speed blocks will be mined, including a 4 minutes interval">
                     <span>
-                        <i class="fa fa-unlock-alt mr-2"></i>
-                        Difficulty
+                        <i class="fa fa-check-square-o mr-2"></i>
+                        Domains
                     </span>
-                    <span id="network-next-difficulty" class="value d-inline-block float-right text-info"><?php echo $status['cumulativeDifficulty'] ?></span>
+                    <span id="network-next-difficulty" class="value d-inline-block float-right text-info"><?php echo $status['totalDomains'] ?></span>
                 </li>
-
                 <li class="list-group-item" data-toggle="tooltip" data-placement="top" data-original-title="Difficulty for the next block, the ratio at which the current hashing speed blocks will be mined, including a 4 minutes interval">
                     <span>
                         <i class="fa fa-globe mr-2"></i>
-                        Peers
+                        Wallets
                     </span>
-                    <span id="network-next-difficulty" class="value d-inline-block float-right text-info"><?php echo count($status['peersPersistence']); ?></span>
+                    <span id="network-next-difficulty" class="value d-inline-block float-right text-info"><?php echo $status['bankAdresses']; ?></span>
                 </li>
 
             </ul>
@@ -62,21 +61,21 @@
                 <li class="list-group-item" data-toggle="tooltip" data-placement="top" data-original-title="Average estimated network hash rate, calculated by average difficulty">
                     <span>
                         <i class="fa fa-exchange mr-2"></i>
-                        Total transaction
+                        Transactions
                     </span>
-                    <span id="avg-hash-rate" class="value d-inline-block float-right text-info"><?php echo $status['totalTransaction'] ?></span>
+                    <span id="avg-hash-rate" class="value d-inline-block float-right text-info"><?php echo $status['totalTransactions'] ?></span>
                 </li>
                 <li class="list-group-item" data-toggle="tooltip" data-placement="top" data-original-title="Average estimated network hash rate, calculated by average difficulty">
                     <span>
                         <i class="fa fa-exchange mr-2"></i>
-                        Total transfer
+                        Transfers
                     </span>
-                    <span id="avg-hash-rate" class="value d-inline-block float-right text-info"><?php echo $status['totalTransfer'] ?></span>
+                    <span id="avg-hash-rate" class="value d-inline-block float-right text-info"><?php echo $status['totalTransfers'] ?></span>
                 </li>
                 <li class="list-group-item" data-toggle="tooltip" data-placement="top" data-original-title="Average estimated network hash rate, calculated by average difficulty">
                     <span>
                         <i class="fa fa-exchange mr-2"></i>
-                        Total
+                        Coins
                     </span>
                     <span id="avg-hash-rate" class="value d-inline-block float-right text-info"><?php echo $status['bankAmount'] / 1000000000 ?> INES</span>
                 </li>
@@ -94,44 +93,61 @@
     <canvas id="inescoinChart" width="400" height="200"></canvas>
   </div>
 </div>
+<?php if ($transactionsPool['count']): ?>
 <div class="card mt-4">
   <div class="card-header">
-    <i class="fa fa-exchange" aria-hidden="true"></i> Transaction Pool <span class="badge badge-info pull-right"><?php echo $transactionsPool['count'] ?> transactions</span>
+    <i class="fa fa-exchange" aria-hidden="true"></i> Transaction Pool <span class="badge badge-info"><?php echo $transactionsPool['count'] ?></span>
   </div>
   <div class="card-body">
-    <?php if ($transactionsPool['count']): ?>
-    <table class="table table-responsive table-striped w-100">
+    <table class="table table-responsive w-100">
         <tbody>
             <tr>
                 <th class="text-center">Date</th>
                 <th class="text-center">From</th>
+                <th class="text-center">To</th>
                 <th class="text-center">Amount</th>
-                <th class="text-center">Fee</th>
-                <th class="text-center">Hash</th>
+                <th class="text-center">Reference</th>
             </tr>
             <?php foreach ($transactionsPool['transactions'] as $transaction): ?>
-            <tr>
+            <tr style="background: #CCC;">
                 <td class="align-center">
-                    <?php echo $transaction['createdAt']; ?>
+                    <?php echo date('Y-m-d H:i:s', (int) $transaction['createdAt']); ?>
                 </td>
                 <td class="align-center">
-                    <a href="?wallet=<?php echo $transaction['from']; ?>">
-                        <?php echo $transaction['from']; ?>
+                    <a href="?wallet=<?php echo $transaction['fromWalletId']; ?>">
+                        <div class="truncate"><?php echo $transaction['fromWalletId']; ?></div>
                     </a>
                 </td>
-                <td class="align-center"><?php echo ($transaction['amount'] / 1000000000); ?></td>
-                <td class="align-center"><?php echo ($transaction['fee'] / 1000000000); ?></td>
                 <td class="align-center">
-                    <div class="truncate"><?php echo $transaction['hash']; ?></div>
+                </td>
+                <td class="align-center"><?php echo ($transaction['amountWithFee'] / 1000000000); ?> <small>INES</small></td>
+                <td class="align-center">
+                    -
                 </td>
             </tr>
+            <?php foreach ($transaction['transfers'] as $transfer): ?>
+                <tr>
+                    <td class="align-center">
+                                            </td>
+                    <td class="align-center">
+                                            </td>
+                    <td class="align-center">
+                        <a href="?wallet=<?php echo $transfer['toWalletId']; ?>">
+                            <div class="truncate"><?php echo $transfer['toWalletId']; ?></div>
+                        </a>
+                    </td>
+                    <td class="align-center"><?php echo ($transfer['amount'] / 1000000000); ?> <small>INES</small></td>
+
+                    <td class="align-center"><?php echo $transfer['reference']; ?></td>
+                </tr>
+            <?php endforeach; ?>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <?php endif; ?>
+
   </div>
 </div>
-
+<?php endif; ?>
 
 <div class="card mt-4">
   <div class="card-header">
@@ -177,7 +193,7 @@
                 <td class="text-center">
                     <?php echo $block['nonce']; ?>
                 </td>
-                <td style="text-align: right;"><?php echo date(DATE_RFC2822, (int)$block['createdAt']); ?></td>
+                <td style="text-align: right;"><?php echo date('Y-m-d H:i:s', (int)$block['createdAt']); ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -207,11 +223,11 @@
                 <th class="text-center">Name</th>
                 <th class="text-center">Transaction hash</th>
             </tr>
-            <?php foreach ($domains['domainList'] as $domain): ?>
+            <?php foreach ($domains as $domain): ?>
             <tr>
                 <td class="text-center">
-                    <a href="?block-height=<?php echo $domain['blockHeight']; ?>">
-                        <?php echo $domain['blockHeight'] ?>
+                    <a href="?block-height=<?php echo $domain['height']; ?>">
+                        <?php echo $domain['height'] ?>
                     </a>
                 </td>
                 <td class="text-center">
@@ -235,59 +251,89 @@
 </div>
 <?php endif; ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <script type="text/javascript">
 
   var data = {
     datasets: [{
-      label: 'Height',
-      data: [],
-      borderColor: 'red',
-      fill: false,
+         type: 'line',
+          label: 'Transactions',
+          data: [
+            <?php foreach ($blocks as $block) { ?>
+            { x: <?php echo $block['createdAt']; ?> * 1000, y: <?php echo $block['countTransaction'] ?> },
+            <?php } ?>
+          ],
+          borderColor: 'green',
+          fill: false,
+        },{
+            type:    'line',
+          label: 'Height',
+          data: [
+            <?php foreach ($blocks as $block) { ?>
+            { x: <?php echo $block['createdAt']; ?> * 1000, y: <?php echo $block['height'] ?> },
+            <?php } ?>
+          ],
+          borderColor: 'red',
+          fill: false,
+          yAxisID: 'y',
+        },{
+          label: 'Difficulty',
+          data: [
+            <?php foreach ($blocks as $block) { ?>
+            { x: <?php echo $block['createdAt']; ?> * 1000, y: <?php echo $block['cumulativeDifficulty'] ?>},
+            <?php } ?>
+          ],
+          borderColor: 'blue',
+          fill: false,
+          yAxisID: 'y1',
     }]
   };
-
-  <?php foreach ($blocks as $block) { ?>
-    data.datasets[0].data.push({
-      t: moment.unix(<?php echo $block['createdAt']; ?>).format("DD-MM-YYYY HH:mm:ss"),
-      y: <?php echo $block['height'] ?>
-    });
-  <?php } ?>
 
   var timeFormat = 'DD/MM/YYYY h:mm:ss a';
 
   var config = {
-      type:    'line',
+        type:    'line',
       data:    data,
       options: {
-          responsive: true,
-          scales:     {
-              xAxes: [{
-                  type:       "time",
-                  time:       {
-                      format: timeFormat,
-                      tooltipFormat: 'll'
-                  },
-                  scaleLabel: {
-                      display:     true,
-                      labelString: 'Date'
-                  }
-              }],
-              yAxes: [{
-                  scaleLabel: {
-                      display:     true,
-                      labelString: 'value'
-                  }
-              }]
+        responsive: true,
+        scales:     {
+          x: {
+            type: 'time',
+            time: {
+                parser: timeFormat,
+                unit: "<?php echo count($blocks) > 50 ? 'minute' : 'day' ?>"
+            },
+            display: true,
+            title: {
+              display: true,
+              text: 'Date'
+            }
+          },
+          y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            title: {
+              display: true,
+              text: 'Height'
+            }
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            title: {
+              display: true,
+              text: 'Difficulty'
+            }
           }
+        }
       }
   };
 
   window.onload = function () {
       var ctx       = document.getElementById("inescoinChart").getContext("2d");
-
-
-
       window.myLine = new Chart(ctx, config);
   };
 

@@ -7,13 +7,13 @@
         <tbody>
             <tr>
                 <td>Date</td>
-                <td class="fixedfont"><?php echo date(DATE_RFC2822, (int)$transaction['createdAt']); ?> - <?php echo $transaction['createdAt']; ?></td>
+                <td class="fixedfont"><?php echo date('Y-m-d H:i:s', (int)$transaction['createdAt']); ?> - <?php echo $transaction['createdAt']; ?></td>
             </tr>
             <tr>
                 <td>From</td>
                 <td class="fixedfont">
-                    <a href="?wallet=<?php echo $transaction['from'] ?>">
-                        <?php echo $transaction['from']; ?>
+                    <a href="?wallet=<?php echo $transaction['fromWalletId'] ?>">
+                        <?php echo $transaction['fromWalletId']; ?>
                     </a>
                 </td>
             </tr>
@@ -28,8 +28,8 @@
             <tr>
                 <td>Height</td>
                 <td class="fixedfont">
-                    <a href="?block-height=<?php echo $transaction['blockHeight']; ?>">
-                        <?php echo $transaction['blockHeight']; ?>
+                    <a href="?block-height=<?php echo $transaction['height']; ?>">
+                        <?php echo $transaction['height']; ?>
                     </a>
                 </td>
             </tr>
@@ -121,8 +121,8 @@
             <?php foreach ($transaction['transfers'] as $transfer): ?>
             <tr>
                 <td class="align-center">
-                    <a href="?wallet=<?php echo $transfer['to']; ?>">
-                        <?php echo $transfer['to']; ?>
+                    <a href="?wallet=<?php echo $transfer['toWalletId']; ?>">
+                        <?php echo $transfer['toWalletId']; ?>
                     </a>
                 </td>
                 <td class="align-center"><?php echo ($transfer['amount'] / 1000000000); ?></td>

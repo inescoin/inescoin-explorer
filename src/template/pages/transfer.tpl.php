@@ -14,8 +14,8 @@
             </tr>
             <tr>
                 <td class="align-center">
-                    <a href="?wallet=<?php echo $transfer['transfer']['to']; ?>">
-                        <?php echo $transfer['transfer']['to']; ?>
+                    <a href="?wallet=<?php echo $transfer['transfer']['toWalletId']; ?>">
+                        <?php echo $transfer['transfer']['toWalletId']; ?>
                     </a>
                 </td>
                 <td class="align-center"><?php echo ($transfer['transfer']['amount'] / 1000000000); ?></td>
@@ -42,8 +42,8 @@
             <tr>
                 <td>From</td>
                 <td class="fixedfont">
-                    <a href="?wallet=<?php echo $transfer['transaction']['from'] ?>">
-                        <?php echo $transfer['transaction']['from']; ?>
+                    <a href="?wallet=<?php echo $transfer['transaction']['fromWalletId'] ?>">
+                        <?php echo $transfer['transaction']['fromWalletId']; ?>
                     </a>
                 </td>
             </tr>
@@ -58,8 +58,8 @@
             <tr>
                 <td>Height</td>
                 <td class="fixedfont">
-                    <a href="?block-height=<?php echo $transfer['transaction']['blockHeight']; ?>">
-                        <?php echo $transfer['transaction']['blockHeight']; ?>
+                    <a href="?block-height=<?php echo $transfer['transaction']['height']; ?>">
+                        <?php echo $transfer['transaction']['height']; ?>
                     </a>
                 </td>
             </tr>
