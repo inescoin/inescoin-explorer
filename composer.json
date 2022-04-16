@@ -1,11 +1,11 @@
 {
     "name": "inescoin/inescoin-explorer",
     "require": {
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^7.4.2"
     },
 
     "require-dev": {
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^9.5.20"
     },
     "autoload": {
         "psr-4": {
