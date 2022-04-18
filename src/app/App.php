@@ -360,11 +360,11 @@ class App
 		}
 
 		if (isset($_GET[$parameter])) {
-			$value = filter_input(INPUT_GET, $parameter, FILTER_SANITIZE_STRING);
+			$value = filter_input(INPUT_GET, $parameter, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 		}
 
 		if (isset($_POST[$parameter])) {
-			$value = filter_input(INPUT_POST, $parameter, FILTER_SANITIZE_STRING);
+			$value = filter_input(INPUT_POST, $parameter, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 		}
 
 		return $value;

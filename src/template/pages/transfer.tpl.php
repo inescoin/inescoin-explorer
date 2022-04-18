@@ -20,7 +20,7 @@
                 </td>
                 <td class="align-center"><?php echo ($transfer['transfer']['amount'] / 1000000000); ?></td>
                 <td class="align-center" title="<?php echo $transfer['transfer']['hash']; ?>"><div class="truncate"><?php echo $transfer['transfer']['hash']; ?></div></td>
-                <td class="align-center" title="<?php echo $transfer['transfer']['walletId']; ?>"><div class="truncate"><?php echo $transfer['transfer']['walletId']; ?></div></td>
+                <td class="align-center" title="<?php echo $transfer['transfer']['reference']; ?>"><div class="truncate"><?php echo $transfer['transfer']['reference']; ?></div></td>
                 <td class="align-center" title="<?php echo $transfer['transfer']['nonce']; ?>"><div class="truncate"><?php echo $transfer['transfer']['nonce']; ?></div></td>
             </tr>
         </tbody>
