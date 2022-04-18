@@ -4,7 +4,9 @@
 // Licensed under the GNU Affero General Public License, version 3.
 ?><nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container">
-		<a class="navbar-brand" href="//inescoin.org">Inescoin</a>
+		<a class="navbar-brand" href="//inescoin.org">
+			<img src="https://res.cloudinary.com/dzfbxltzx/image/upload/v1650293557/Inescoin/logo/Inescoin_logo_couleurs_complet_1_copie_cc1uzu.png" width="120" height="40" alt="Inescoin Explorer">
+		</a>
 
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
