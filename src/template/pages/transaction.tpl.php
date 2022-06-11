@@ -62,7 +62,7 @@
 
 <div class="card mt-4">
   <div class="card-header">
-    <i class="fa fa-thumb-tack" aria-hidden="true"></i> To Do's <span class="badge badge-info pull-right"><?php echo count($transaction['toDo']) ?> toDo's</span>
+    <i class="fa fa-thumb-tack" aria-hidden="true"></i> To Do's <span class="badge badge-info pull-right"><?php echo $transaction['toDo'] ? count($transaction['toDo']) : 0 ?> toDo's</span>
   </div>
   <div class="card-body">
     <?php
